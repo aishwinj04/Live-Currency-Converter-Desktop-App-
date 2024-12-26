@@ -7,8 +7,8 @@ import requests
 
 
 # beautifulsoup to get live exchange rate 
-def get_exchange(amount, input_curr='CAD', output_curr='USD'):
-    url = f"https://www.x-rates.com/calculator/?from={input_curr}&to={output_curr}&amount={amount}" # static amount of 1, multiply user amount later
+def get_exchange(input_curr='CAD', output_curr='USD'):
+    url = f"https://www.x-rates.com/calculator/?from={input_curr}&to={output_curr}&amount=1"
     content = requests.get(url).text
     soup = BeautifulSoup(content, 'html.parser')
     rate = soup.find("span", class_="ccOutputRslt").get_text()
@@ -20,8 +20,9 @@ def get_exchange(amount, input_curr='CAD', output_curr='USD'):
 # slot function
 def show_conversion():
     amount = float(text.text())
-    rate = get_exchange(amount)
-    rounded_rate = round(rate,2)
+    rate = get_exchange()
+    result = amount*rate
+    rounded_rate = round(result,2)
     output_label.setText(str(rounded_rate))
 
 
