@@ -17,12 +17,12 @@ def get_exchange(amount, input_curr='CAD', output_curr='USD'):
     return rate
     
 
-
 # slot function
 def show_conversion():
     amount = float(text.text())
     rate = get_exchange(amount)
-    output_label.setText(str(rate))
+    rounded_rate = round(rate,2)
+    output_label.setText(str(rounded_rate))
 
 
 app = QApplication([])
