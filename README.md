@@ -25,3 +25,5 @@ The user interface is created using PyQt6 and contains:
 Dropdown menus for currency selection.
 A text input for the amount.
 A button to perform the conversion and display the result.
+
+### Version History
