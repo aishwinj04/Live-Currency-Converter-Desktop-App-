@@ -22,8 +22,9 @@ The exchange rate is fetched using **BeautifulSoup** by parsing the HTML of the 
 ## PyQt6 User Interface
 The user interface is created using PyQt6 and contains:
 
-Dropdown menus for currency selection.
+Dropdown menus for currency selection (One for the current currency and the other for the target currency).
 A text input for the amount.
 A button to perform the conversion and display the result.
 
 ### Version History
+**Version:** 1.0 Did not account for multiple currencies.
