@@ -2,12 +2,16 @@ from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushBut
 from bs4 import BeautifulSoup
 import requests 
 
+
+# VERSION1 SUPPORT ONLY FOR CAD->USD EXCHANGE RATE
+
+
 # beautifulsoup to get live exchange rate 
-def get_exchange(input_curr='CAD', output_curr='USD'):
-    url = f"https://www.x-rates.com/calculator/?from={input_curr}&to={output_curr}&amount={amount}"
+def get_exchange(amount, input_curr='CAD', output_curr='USD'):
+    url = f"https://www.x-rates.com/calculator/?from={input_curr}&to={output_curr}&amount={amount}" # static amount of 1, multiply user amount later
     content = requests.get(url).text
     soup = BeautifulSoup(content, 'html.parser')
-    rate = soup.find("span", class_="ccOutputRslt")
+    rate = soup.find("span", class_="ccOutputRslt").get_text()
     rate = float(rate[:-4]) # exlcude code
 
     return rate
@@ -16,11 +20,9 @@ def get_exchange(input_curr='CAD', output_curr='USD'):
 
 # slot function
 def show_conversion():
-    input_amount = amount.text()
-
-
-
-
+    amount = float(text.text())
+    rate = get_exchange(amount)
+    output_label.setText(str(rate))
 
 
 app = QApplication([])
@@ -30,16 +32,9 @@ window.resize(300, 400)
 
 layout = QVBoxLayout()
 
-# select input currency
-
-
-# select output currency
-
-
-
 # amount entry 
-amount = QLineEdit()
-layout.addWidget(amount)
+text = QLineEdit()
+layout.addWidget(text)
 
 
 # validate button 
