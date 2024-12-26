@@ -7,7 +7,7 @@ import requests
 
 
 # beautifulsoup to get live exchange rate 
-def get_exchange(input_curr='EUR', output_curr='CAD'):
+def get_exchange(input_curr, output_curr):
     url = f"https://www.x-rates.com/calculator/?from={input_curr}&to={output_curr}&amount=1"
     content = requests.get(url).text
     soup = BeautifulSoup(content, 'html.parser')
@@ -15,12 +15,14 @@ def get_exchange(input_curr='EUR', output_curr='CAD'):
     rate = float(rate[:-4]) # exlcude code
 
     return rate
-    
 
 # slot function
 def show_conversion():
     amount = float(text.text())
-    rate = get_exchange()
+    input_curr = in_combo.currentText()
+    output_curr = to_combo.currentText()
+   # print(input_curr, output_curr)
+    rate = get_exchange(input_curr, output_curr)
     result = amount*rate
     rounded_rate = round(result,2)
     output_label.setText(str(rounded_rate))
@@ -29,7 +31,7 @@ def show_conversion():
 app = QApplication([])
 window = QWidget()
 window.setWindowTitle("Currency App")
-window.resize(300, 400)
+window.resize(300, 300)
 
 layout = QVBoxLayout()
 
