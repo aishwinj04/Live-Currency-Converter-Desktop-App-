@@ -18,14 +18,15 @@ def get_exchange(input_curr, output_curr):
 
 # slot function
 def show_conversion():
-    amount = float(text.text())
+    input_text = float(text.text())
     input_curr = in_combo.currentText()
     output_curr = to_combo.currentText()
    # print(input_curr, output_curr)
     rate = get_exchange(input_curr, output_curr)
-    result = amount*rate
+    result = input_text*rate
     rounded_rate = round(result,2)
-    output_label.setText(str(rounded_rate))
+    message = f"{input_text} {input_curr} is {rounded_rate} {output_curr}"
+    output_label.setText(message)
 
 
 app = QApplication([])
