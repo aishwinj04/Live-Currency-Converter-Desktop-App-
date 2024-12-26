@@ -1,13 +1,13 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit, QComboBox
 from bs4 import BeautifulSoup
 import requests 
 
 
-# VERSION1 SUPPORT ONLY FOR CAD->USD EXCHANGE RATE
+# VERSION2 SUPPORT FOR ANY CURRENCY 
 
 
 # beautifulsoup to get live exchange rate 
-def get_exchange(input_curr='CAD', output_curr='USD'):
+def get_exchange(input_curr='EUR', output_curr='CAD'):
     url = f"https://www.x-rates.com/calculator/?from={input_curr}&to={output_curr}&amount=1"
     content = requests.get(url).text
     soup = BeautifulSoup(content, 'html.parser')
@@ -32,6 +32,21 @@ window.setWindowTitle("Currency App")
 window.resize(300, 400)
 
 layout = QVBoxLayout()
+
+# input currency dropdown 
+in_combo = QComboBox()
+currencies = ['USD', 'EUR', 'INR', 'CAD', 'GBP', 'AUD', 'JPY', 'CNY']
+in_combo.addItems(currencies)
+layout.addWidget(in_combo)
+
+
+# output currency dropdown
+to_combo = QComboBox()
+to_combo.addItems(currencies)
+layout.addWidget(to_combo)
+
+
+
 
 # amount entry 
 text = QLineEdit()
