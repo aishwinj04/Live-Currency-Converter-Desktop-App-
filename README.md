@@ -26,5 +26,12 @@ Dropdown menus for currency selection (One for the current currency and the othe
 A text input for the amount.
 A button to perform the conversion and display the result.
 
-### Version History
-**Version:** 1.0 Did not account for multiple currencies.
+## Version History
+- **Version 2.0**: 
+  - Added dropdown menus to select input and output currencies dynamically.
+  - No longer hardcoded to specific currencies; users can select any supported currency.
+  - Cleaned up UI to make the app more user-friendly.
+  
+- **Version 1.0**: 
+  - Hardcoded currencies (only CAD to USD conversion).
+  - User input was limited to one fixed currency (USD) and conversion was fixed to EUR.
