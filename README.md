@@ -1,7 +1,7 @@
 # Live_Currency_Converter_App
 
 
-**Version:** 2.0  
+**Version:** 3.0  
 
 ## Overview
 A simple currency converter app built using **PyQt6** for the graphical user interface (GUI) and **BeautifulSoup** for fetching live exchange rates. The app allows users to convert an amount from one currency to another based on real-time exchange rates.
@@ -35,3 +35,6 @@ A button to perform the conversion and display the result.
 - **Version 1.0**: 
   - Hardcoded currencies (only CAD to USD conversion).
   - User input was limited to one fixed currency (USD) and conversion was fixed to EUR.
+
+- **Version 3.0: (Latest)**
+  - Introduced an advanced layout using nested horizontal and vertical layouts for a cleaner, more modular, and scalable design.
