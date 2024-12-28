@@ -1,9 +1,9 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit, QComboBox
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLineEdit, QComboBox
 from bs4 import BeautifulSoup
 import requests 
 
 
-# VERSION2 SUPPORT FOR ANY CURRENCY 
+# VERSION3 ADVANCED LAYOUT
 
 
 # beautifulsoup to get live exchange rate 
@@ -34,42 +34,51 @@ window = QWidget()
 window.setWindowTitle("Currency App")
 window.resize(300, 300)
 
-layout = QVBoxLayout()
+# children of main_layout is layout1 and label vertical stacked
+main_layout = QVBoxLayout()
+
+# layout1 children is layout2 and layout3 horizontal aligned
+layout1 = QHBoxLayout()
+main_layout.addLayout(layout1)
+
+output_label = QLabel('')
+main_layout.addWidget(output_label)
+
+# layout2 children is 2 combobox vertical stacked
+layout2 = QVBoxLayout()
+layout1.addLayout(layout2)
+
+# layout3 children is the input field and button vertical stacked
+layout3 = QVBoxLayout()
+layout1.addLayout(layout3)
+
+
 
 # input currency dropdown 
 in_combo = QComboBox()
 currencies = ['USD', 'EUR', 'INR', 'CAD', 'GBP', 'AUD', 'JPY', 'CNY']
 in_combo.addItems(currencies)
-layout.addWidget(in_combo)
+main_layout.addWidget(in_combo)
 
 
 # output currency dropdown
 to_combo = QComboBox()
 to_combo.addItems(currencies)
-layout.addWidget(to_combo)
-
-
+main_layout.addWidget(to_combo)
 
 
 # amount entry 
 text = QLineEdit()
-layout.addWidget(text)
+main_layout.addWidget(text)
 
 
 # validate button 
 btn = QPushButton('Convert')
-layout.addWidget(btn)
+main_layout.addWidget(btn)
 btn.clicked.connect(show_conversion)
 
 
-# output value
-output_label = QLabel('')
-layout.addWidget(output_label)
-
-
-
-
 # output
-window.setLayout(layout)
+window.setLayout(main_layout)
 window.show()
 app.exec()
