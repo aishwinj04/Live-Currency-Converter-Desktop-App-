@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLineEdit, QComboBox
+from PyQt6.QtCore import Qt
 from bs4 import BeautifulSoup
 import requests 
 
@@ -32,7 +33,7 @@ def show_conversion():
 app = QApplication([])
 window = QWidget()
 window.setWindowTitle("Currency App")
-window.resize(300, 300)
+window.resize(300, 100) #w,l
 
 # children of main_layout is layout1 and label vertical stacked
 main_layout = QVBoxLayout()
@@ -58,23 +59,23 @@ layout1.addLayout(layout3)
 in_combo = QComboBox()
 currencies = ['USD', 'EUR', 'INR', 'CAD', 'GBP', 'AUD', 'JPY', 'CNY']
 in_combo.addItems(currencies)
-main_layout.addWidget(in_combo)
+layout2.addWidget(in_combo)
 
 
 # output currency dropdown
 to_combo = QComboBox()
 to_combo.addItems(currencies)
-main_layout.addWidget(to_combo)
+layout2.addWidget(to_combo)
 
 
 # amount entry 
 text = QLineEdit()
-main_layout.addWidget(text)
+layout3.addWidget(text)
 
 
 # validate button 
 btn = QPushButton('Convert')
-main_layout.addWidget(btn)
+layout3.addWidget(btn, alignment=Qt.AlignmentFlag.AlignBottom)
 btn.clicked.connect(show_conversion)
 
 
